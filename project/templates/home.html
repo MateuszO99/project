@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block content %}
+  <h1 class="text-center">Home Page</h1>
+
+  {% for summoner in summoners %}
+    <h3>Summoner: <a href="{{ url_for('find_user', username=summoner.name) }}" class="summoner-link">{{ summoner.name }}</a></h3>
+    <p class="mb-4">Win ratio: {{ summoner.win_ratio }}%</p>
+  {% endfor %}
+{% endblock %}

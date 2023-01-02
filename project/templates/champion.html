@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block title %}- {{ champion }}{% endblock %}
+{% block content %}
+  <h1 class="pt-4 text-center">{{ champion }}</h1>
+  <img src="{{ url_for('static', filename='champions/' + champion + '_0.jpg') }}" class="center-block mb-4">
+
+  {% if current_user.is_authenticated %}
+    <form method="post" action="">
+      <div class="text-center">
+        {% if not favourite.favourite %}
+          <button class="favourite" name="fav" value="champion {{ champion }} watch">Watch champion</button>
+        {% else %}
+          <button class="favourite" name="fav" value="champion {{ champion }} watch">Unwatch champion</button>
+        {% endif %}
+      </div>
+    </form>
+  {% endif %}
+
+  {% for item in items_list %}
+    <div class="text-center">
+      {{ item[1] }}
+      <img class="item" title="{{ item[1] }}" src="{{ url_for('static', filename='items/' + item[0] + '.png') }}">
+    </div>
+  {% endfor %}
+{% endblock %}

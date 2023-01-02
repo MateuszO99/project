@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block title %}register{% endblock %}
+{% block content %}
+  <form method="post" action="" class="pt-4">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.email.label }}
+      {% if form.email.errors %}
+        {{ form.email(class="form-control") }}
+        <div>
+          {% for error in form.email.errors %}
+            <span class="text-danger mt-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.email(class="form-control") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.password.label }}
+      {% if form.password.errors %}
+        {{ form.password(class="form-control") }}
+        <div>
+          {% for error in form.password.errors %}
+            <span class="text-danger mt-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.password(class="form-control") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.confirm_password.label }}
+      {% if form.confirm_password.errors %}
+        {{ form.confirm_password(class="form-control") }}
+        <div>
+          {% for error in form.confirm_password.errors %}
+            <span class="text-danger mt-2">{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ form.confirm_password(class="form-control") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+{% endblock %}

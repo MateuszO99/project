@@ -1,0 +1,101 @@
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.second-background{
+    background-color: #091120;
+    min-height: 1000px;
+}
+
+.search-button {
+    border-color: white;
+    color: #343a40;
+}
+
+.search-button:hover {
+    background-color: #0d1117;
+    color: white;
+}
+
+.normal-button:link {
+    color: #c9d1d9;
+}
+
+.normal-button:visited {
+    color: #c9d1d9;
+}
+
+.normal-button:hover {
+    color: #b8c0c8;
+}
+
+.champions {
+    display: none;
+    width: calc(75% - 40px);
+    min-width: calc(75% - 40px);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.champions-button:hover {
+    cursor: pointer;
+    color: #b8c0c8;
+}
+
+.champion {
+    position: relative;
+    width: 85px;
+    justify-items: flex-start;
+}
+
+.items {
+    position: absolute;
+    display: flex;
+    top: calc(100% - 65px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.item {
+    justify-items: flex-start;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.favourite {
+    background-color: transparent;
+    border: transparent;
+    color: #c9d1d9;
+    margin-bottom: 15px;
+    padding-left: 0;
+}
+
+.favourite:hover {
+    cursor: pointer;
+}
+
+.summoner-link:link {
+    color: #c9d1d9;
+}
+
+.summoner-link:visited {
+    color: #c9d1d9;
+}
+
+.summoner-link:hover {
+    text-decoration: none;
+    color: #dae2ea;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

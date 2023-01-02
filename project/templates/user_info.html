@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block title %}- {{ username }}{% endblock %}
+{% block content %}
+  {% if error %}
+    <h1>{{ error.error }}</h1>
+  {% else %}
+    <h1 class="mb-4 pt-4 text-center">Player: {{ username }}</h1>
+
+    {% if current_user.is_authenticated %}
+      <form method="post" action="">
+        {% if not favourite.favourite %}
+          <button class="favourite" name="fav" value="user {{ username }} watch">Watch player</button>
+        {% else %}
+          <button class="favourite" name="fav" value="user {{ username }} watch">Unwatch player</button>
+        {% endif %}
+      </form>
+    {% endif %}
+
+    {% for match in match_history %}
+      <div class="mb-5 display-6">
+        <p>Placement: {{ match.placement }} Last Round: {{ match.last_round }} Level: {{ match.level }}</p>
+        <p class="champions-button">Show champions</p>
+        <div class="champions">
+          {% for champion in match.champions %}
+            <a class="champion">
+              <img class="champion-img" src="{{ url_for('static', filename='champions/' + champion.champion_name + '_0.jpg') }}">
+              <div class="items">
+                {% for item in champion.items_name %}
+                  <img class="item" title="{{ item[1] }}" src="{{ url_for('static', filename='items/' + item[0] + '.png') }}">
+                {% endfor %}
+              </div>
+              <p class="mb-0 mt-2">{{ champion.champion_name }} </p>
+              <p class="m-0">Tier: {{ champion.tier }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

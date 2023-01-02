@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block title %}favourites{% endblock %}
+{% block content %}
+  <h1 class="mb-4 text-center">Favourites</h1>
+
+  <div class="row text-center">
+    <div class="col">
+      <h2 class="mb-4">Players:</h2>
+
+      {% for favourite in favourites_list %}
+        {% if favourite.is_player %}
+          <p><a href="{{ url_for('find_user', username=favourite.name) }}">{{ favourite.name }}</a></p>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="col">
+      <h2 class="mb-4">Champions:</h2>
+
+      {% for favourite in favourites_list %}
+        {% if not favourite.is_player %}
+          <p><a href="{{ url_for('find_champion', champion=favourite.name) }}">{{ favourite.name }}</a></p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
