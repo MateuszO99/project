@@ -8,9 +8,9 @@
     <form method="post" action="">
       <div class="text-center">
         {% if not favourite.favourite %}
-          <button class="favourite" name="fav" value="champion {{ champion }} watch">Watch champion</button>
+          <button class="favourite" name="fav" value="champion {{ champion }} watch">Like</button>
         {% else %}
-          <button class="favourite" name="fav" value="champion {{ champion }} watch">Unwatch champion</button>
+          <button class="favourite" name="fav" value="champion {{ champion }} watch">Unlike</button>
         {% endif %}
       </div>
     </form>

@@ -48,20 +48,13 @@ def player_information(participants, puuid):
             level = participant["level"]
             for champion in participant["units"]:
                 champion_id = champion["character_id"]
-                champion_name = champion_id.replace("TFT7_", "")
-                champion_name = champion_name.replace("TFT8_", "")
-                champion_name = champion_name.replace("TFT7b_", "")
-                champion_name = champion_name.replace("TFT6_", "")
+                champion_name = re.sub("TFT\d[a-z]*_", "", champion_id)
                 if "Dragon" in champion_name:
                     continue
                 tier = champion["tier"]
                 try:
                     item_names = champion["itemNames"]
-                    item_names = [item.replace("TFT7_Item_", "") for item in item_names]
-                    item_names = [item.replace("TFT8_Item_", "") for item in item_names]
-                    item_names = [item.replace("TFT5_Item_", "") for item in item_names]
-                    item_names = [item.replace("TFT4_Item_", "") for item in item_names]
-                    item_names = [item.replace("TFT_Item_", "") for item in item_names]
+                    item_names = [re.sub("TFT(\d)*_Item_", "", item) for item in item_names]
                     names = [' '.join(re.findall('[A-Z][^A-Z]*', name)) for name in item_names]
                     item_names = [item.lower() for item in item_names]
                     item_names = [i for i in zip(item_names, names)]

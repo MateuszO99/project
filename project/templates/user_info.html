@@ -9,9 +9,9 @@
     {% if current_user.is_authenticated %}
       <form method="post" action="">
         {% if not favourite.favourite %}
-          <button class="favourite" name="fav" value="user {{ username }} watch">Watch player</button>
+          <button class="favourite" name="fav" value="user {{ username }} watch">Like</button>
         {% else %}
-          <button class="favourite" name="fav" value="user {{ username }} watch">Unwatch player</button>
+          <button class="favourite" name="fav" value="user {{ username }} watch">Unlike</button>
         {% endif %}
       </form>
     {% endif %}

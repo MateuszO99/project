@@ -105,7 +105,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash("Your account has been created!", "success")
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template_form('register.html', form=form)
 
 
@@ -129,7 +129,7 @@ def logout():
     return redirect(url_for("home"))
 
 
-@app.route("/favourite/")
+@app.route("/favourite/", methods=["GET", "POST"])
 @login_required
 def favourite():
     favourites_list = []
