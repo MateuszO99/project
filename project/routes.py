@@ -17,7 +17,7 @@ def home():
     uri = f"https://eun1.api.riotgames.com/tft/league/v1/challenger?api_key={api_key}"
     data = data_returner(uri)
     if data == "Error":
-        return render_template_form("Connection Error")
+        return render_template_form("connection_error.html")
     summoners = []
     for summoner in data["entries"]:
         name = summoner["summonerName"]
@@ -53,7 +53,7 @@ def find_champion(champion):
     uri = f"https://eun1.api.riotgames.com/tft/league/v1/challenger?api_key={api_key}"
     data = data_returner(uri)
     if data == "Error":
-        return render_template_form("Connection Error")
+        return render_template_form("connection_error.html")
     summoners = []
     for summoner in data["entries"]:
         summoners.append(summoner["summonerName"])
@@ -67,14 +67,17 @@ def find_champion(champion):
 
     for matches in match_history:
         for match in matches:
-            if match["placement"] < 5:
-                for champ in match["champions"]:
-                    if champ["champion_name"].lower() != champion.lower():
-                        for item in champ["items_name"]:
-                            if items.get(item) is None:
-                                items[item] = 1
-                            else:
-                                items[item] += 1
+            try:
+                if match["placement"] < 5:
+                    for champ in match["champions"]:
+                        if champ["champion_name"].lower() != champion.lower():
+                            for item in champ["items_name"]:
+                                if items.get(item) is None:
+                                    items[item] = 1
+                                else:
+                                    items[item] += 1
+            except TypeError:
+                return render_template_form("connection_error.html")
 
     items_list = [k for k, v in sorted(items.items(), key=lambda i: i[1], reverse=True)]
     items_list = items_list[:3]
